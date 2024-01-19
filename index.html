@@ -1,0 +1,80 @@
+---
+layout: default
+permalink: /
+---
+
+<!-- Current Conference -->
+{% assign conference = site.data.conferences | where: "current",true %}
+{% for c in conference %}
+<br />
+<h3>Current Conference</h3>
+<a class="col-sm-12" href="{{ c.link }}" target="_blank">
+    <div class="current">
+        <img src="{{ site.baseurl }}/images/conferences/{{ c.image }}" alt="{{ c.edition }}" />
+        <div class="content">
+            <h3>{{ c.edition }} GCASR </h3>
+            {{ c.year }} – {{ c.location }}
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+<div class="row" style="padding-top: 2em">
+    <div class="col-md-12 col-lg-8">
+        <h2>What is GCASR?</h2>
+    </div>
+
+    <!-- Twitter-->
+    <div class="col-md-12 col-lg-4">
+        <div class="twitter">
+            <div class="twitter-header">
+                <i class="fab fa-twitter"></i> @eScience
+            </div>
+            <a class="twitter-timeline" href="" data-dnt="true"
+                data-theme="light" data-chrome=" nofooter noheader" data-height="835" it="twitter-timeline">
+                Tweets by eScience</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<!-- Past Conferences -->
+<a id="past-conferences"></a>
+<h3>Past Conferences</h3>
+<div class="row" style="padding-top: 2em">
+    {% assign conferences = site.data.conferences | sort: "year" | reverse %}
+    {% for c in conferences %}
+    <div class="col-md-12 col-lg-12">
+        <div class="conference">
+            <div class="header">
+                <a href="{{ c.link }}" target="_blank">
+                    <strong>{{ c.edition }} GCASR </strong>
+                </a><br />
+                {{ c.year }} – {{ c.location }}
+
+                <div class="row">
+                    {% if c.accepted %}
+                    <div class="col-sm-12 statistics">
+                        <strong><i class="fas fa-chart-bar"></i> Statistics<br /></strong>
+                        <span class="numbers">
+                            Posters accepted: <span class="number">{{ c.accepted }}</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+                            Attendees: <span class="number">{{ c.attendees }}</span>
+                        </span>
+                    </div>
+                    {% endif %}
+
+              
+                </div>
+            </div>
+            <a href="{{ c.link }}" target="_blank">
+                <img src="{{ site.baseurl }}/images/conferences/{{ c.image }}" alt="{{ c.edition }}" />
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
